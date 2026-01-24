@@ -1,0 +1,20 @@
+// Code your testbench here
+// or browse Examples
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+module tb;
+  initial
+    begin
+      int data=10;
+      #10;
+      $display("hello");
+      `uvm_info("top_tb","hello vlsi",UVM_LOW);
+      #10;
+      `uvm_info("top_tb",$sformatf("value of data=%0d",data),UVM_LOW);
+    end
+endmodule
+
+//output
+# KERNEL: hello
+# KERNEL: UVM_INFO /home/runner/testbench.sv(13) @ 10: reporter [top_tb] hello vlsi
+# KERNEL: UVM_INFO /home/runner/testbench.sv(15) @ 20: reporter [top_tb] value of data=10
