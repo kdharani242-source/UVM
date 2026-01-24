@@ -1,0 +1,29 @@
+`include "uvm_macros.svh";
+import uvm_pkg::*;
+module tb;
+  initial
+    begin
+    int verb;
+      uvm_top.set_report_verbosity_level(100);//uvm low
+    verb=uvm_top.get_report_verbosity_level();
+    `uvm_info("verbosity",$sformatf("default verbosity level=%0d",verb),UVM_LOW);
+      uvm_top.set_report_verbosity_level(200);//uvm medium
+    verb=uvm_top.get_report_verbosity_level();
+    `uvm_info("verbosity",$sformatf("default verbosity level=%0d",verb),UVM_LOW);
+      uvm_top.set_report_verbosity_level(UVM_HIGH);//uvm high
+    verb=uvm_top.get_report_verbosity_level();
+    `uvm_info("verbosity",$sformatf("default verbosity level=%0d",verb),UVM_LOW);
+      uvm_top.set_report_verbosity_level(400);//uvm full
+    verb=uvm_top.get_report_verbosity_level();
+      `uvm_info("verbosity",$sformatf("default verbosity level=%0d",verb),UVM_LOW);
+      uvm_top.set_report_verbosity_level(500);//uvm debug
+    verb=uvm_top.get_report_verbosity_level();
+    `uvm_info("verbosity",$sformatf("default verbosity level=%0d",verb),UVM_LOW);
+  end
+endmodule
+//output
+# KERNEL: UVM_INFO /home/runner/testbench.sv(12) @ 0: reporter [verbosity] default verbosity level=100
+# KERNEL: UVM_INFO /home/runner/testbench.sv(15) @ 0: reporter [verbosity] default verbosity level=200
+# KERNEL: UVM_INFO /home/runner/testbench.sv(18) @ 0: reporter [verbosity] default verbosity level=300
+# KERNEL: UVM_INFO /home/runner/testbench.sv(21) @ 0: reporter [verbosity] default verbosity level=400
+# KERNEL: UVM_INFO /home/runner/testbench.sv(24) @ 0: reporter [verbosity] default verbosity level=500
