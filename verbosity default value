@@ -9,4 +9,4 @@ module tb;
   end
 endmodule
 //output
-# KERNEL: UVM_INFO /home/runner/testbench.sv(9) @ 0: reporter [verbosity] default verbosity level=400
+# KERNEL: UVM_INFO /home/runner/testbench.sv(8) @ 0: reporter [verbosity] default verbosity level=200
