@@ -1,0 +1,59 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class y extends uvm_component;
+  `uvm_component_utils(y)
+  function new(string path="y",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("y","build phase executed",UVM_NONE);
+  endfunction
+endclass
+class z extends uvm_component;
+  `uvm_component_utils(z)
+  function new(string path="z",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("z","build phase executed",UVM_NONE);
+  endfunction
+endclass
+class x extends uvm_component;
+  `uvm_component_utils(x)
+  y y_inst;
+  z z_inst;
+  function new(string path="x",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    y_inst=y::type_id::create("y_inst",this);
+    z_inst=z::type_id::create("z_inst",this);
+  endfunction
+endclass
+module tb;
+  initial
+    begin
+      run_test("x");
+    end
+endmodule
+ 
+# KERNEL: UVM_INFO @ 0: reporter [RNTST] Running test x...
+# KERNEL: UVM_INFO /home/runner/testbench.sv(11) @ 0: uvm_test_top.y_inst [y] build phase executed
+# KERNEL: UVM_INFO /home/runner/testbench.sv(21) @ 0: uvm_test_top.z_inst [z] build phase executed
+# KERNEL: UVM_INFO /home/build/vlib1/vlib/uvm-1.2/src/base/uvm_report_server.svh(869) @ 0: reporter [UVM/REPORT/SERVER] 
+# KERNEL: --- UVM Report Summary ---
+# KERNEL: 
+# KERNEL: ** Report counts by severity
+# KERNEL: UVM_INFO :    4
+# KERNEL: UVM_WARNING :    0
+# KERNEL: UVM_ERROR :    0
+# KERNEL: UVM_FATAL :    0
+# KERNEL: ** Report counts by id
+# KERNEL: [RNTST]     1
+# KERNEL: [UVM/RELNOTES]     1
+# KERNEL: [y]     1
+# KERNEL: [z]     1
