@@ -1,0 +1,72 @@
+// Code your testbench here
+// or browse Examples
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+/*class a extends uvm_component;
+  `uvm_component_utils(a)
+  function new(string path="a",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("a","build phase executed",UVM_NONE);
+  endfunction
+endclass
+class b extends uvm_component;
+  `uvm_component_utils(b)
+  function new(string path="b",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("b","build phase executed",UVM_NONE);
+  endfunction
+endclass*/
+class y extends uvm_component;
+  `uvm_component_utils(y)
+  /*a a_inst;
+  b b_inst;*/
+  function new(string path="y",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    /*a_inst=a::type_id::create("a_inst",this);
+    b_inst=b::type_id::create("b_inst",this);*/
+    `uvm_info("y","build phase executed",UVM_NONE);
+  endfunction
+endclass
+class z extends uvm_component;
+  `uvm_component_utils(z)
+  function new(string path="z",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("z","build phase executed",UVM_NONE);
+  endfunction
+endclass
+class x extends uvm_component;
+  `uvm_component_utils(x)
+  y y_inst;
+  z z_inst;
+  function new(string path="x",uvm_component parent);
+    super.new(path,parent);
+  endfunction
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    y_inst=y::type_id::create("y_inst",this);
+    z_inst=z::type_id::create("z_inst",this);
+    y_inst.build_phase(null);
+    z_inst.build_phase(null);
+  endfunction
+endclass
+module tb;
+  x x1;
+  initial
+    begin
+      //run_test("x");
+      x1=x::type_id::create("x1",null);
+      x1.build_phase(null);
+    end
+endmodule
